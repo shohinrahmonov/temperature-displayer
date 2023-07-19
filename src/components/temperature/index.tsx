@@ -15,7 +15,7 @@ const TemperatureDisplay = ({
   className,
 }: TemperatureDisplay) => {
   const [currentTemperature, setCurrentTemperature] = useState(min);
-  const [angle, setAngle] = useState(convertCelsiusTo360(min));
+  const [angle, setAngle] = useState(convertCelsiusTo360(min, max));
 
   const handleChangeTemperature: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -23,11 +23,11 @@ const TemperatureDisplay = ({
     const newTemperature = Number(event.target.value);
     if (newTemperature <= max) {
       setCurrentTemperature(newTemperature);
-      setAngle(convertCelsiusTo360(newTemperature));
+      setAngle(convertCelsiusTo360(newTemperature, max));
     }
   };
-  const minRotation = convertCelsiusTo360(min);
-  const maxRotation = convertCelsiusTo360(max);
+  const minRotation = convertCelsiusTo360(min, max);
+  const maxRotation = convertCelsiusTo360(max, max);
   return (
     <div className="space-y-3 flex justify-center items-center flex-col">
       <div className={cn("relative h-20 w-20 mb-4", className)}>
